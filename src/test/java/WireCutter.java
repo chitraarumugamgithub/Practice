@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,14 +18,17 @@ public class WireCutter {
 
     public static void main(String[] args) {
 
-        String homePage = "https://www.nytimes.com/wirecutter/";
+        String homePage = "https://weather.com/";
         String url = "";
         HttpURLConnection huc = null;
         int respCode = 200;
+        WebDriverManager.chromedriver().setup();
+
         ChromeOptions options = new ChromeOptions();
 
-        System.setProperty("webdriver.chrome.driver", "src//resources//windows//chromedriver.exe");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
+
         driver = new ChromeDriver(options);
 
         driver.manage().window().maximize();
